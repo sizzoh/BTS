@@ -1,0 +1,173 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="" name="viewport" content="width=device-width, initial-scale=1.0", maximum scale="1"/>
+<title>home</title>
+    <!-- Template Main CSS File -->
+   <link href="{%static 'bootstrap-5.2.2-dist/css/bootstrap.css'%}" rel="stylesheet">
+  <link href="{%static 'bootstrap-5.2.2-dist/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'fontawesome-free/css/all.min.css'%}" rel="stylesheet"> 
+ <link href="{%static 'fontawesome-free/css/all.css'%}" rel="stylesheet">
+  <link href="{%static 'fontawesome-free/css/fontawesome.min.css'%}" rel="stylesheet">
+  <link href="{%static 'fontawesome-free/css/fontawesome.css'%}" rel="stylesheet">
+ 
+ <link href="{%static 'style.css'%}" rel="stylesheet">
+  <link href="{%static 'all.css'%}" rel="stylesheet">
+  <link href="{%static 'chart.js/Chart.css'%}" rel="stylesheet">
+  <link href="{%static 'chart.js/Chart.min.css'%}" rel="stylesheet"> 
+
+   <!-- Template Main js File -->
+  <script src="{% static 'bootstrap-5.2.2-dist/js/bootstrap.bundle.js'%}"></script> 
+  <script src="{% static 'bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js'%}"></script>
+   <script src="{% static 'bootstrap-5.2.2-dist/js/bootstrap.min.js'%}"></script> 
+  <script src="{% static 'bootstrap-5.2.2-dist/js/bootstrap.js'%}"></script> 
+  <script src="{% static 'chart.js/Chart.bundle.js' %}"></script>
+   <script src="{% static 'chart.js/Chart.bundle.min.js' %}"></script>
+   <script src="{% static 'chart.js/Chart.js' %}"></script>
+   <script src="{% static 'chart.js/Chart.min.js' %}"></script> 
+  <script src="{% static 'script.js'%}"></script>
+  <script src="{% static 'scripts.js'%}"></script>
+   <script src="{% static 'jquery.min.js'%}"></script> 
+<style>
+  #navbarDropdown:hover > .dropdown-menu{
+    display:block;
+    
+    }
+</style>
+</head>
+<body onload="expense(), loginAuthenticate(), time()">
+    <nav class="navbar navbar-expand-lg sticky-lg-top p-4 navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><span class="text-warning">logo</span> </a>
+            <a class="navbar-brand" href="#">Login Time:<span class="text-default" id="time">login time</span> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    {% comment %} navigation {% endcomment %}
+                    <li class="nav-item dropdown" id="navbarDropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-bs-toggle="dropdown" aria-expanded="false">
+                          Budget
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="{%url 'budget'%}">Add budget</a></li>
+                          <li><a class="dropdown-item" href="#"></a></li>
+                          <li><a class="dropdown-item" href="{% url 'budgetList'%}">Registered Budget</a></li>
+                          </li>
+
+                      </ul>
+                  </li>
+                  <li class="nav-item dropdown" id="navbarDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Sales
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="{%url 'salesPage'%}">Sales</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sales'%}">add Sales</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href"#"></a></li>
+                        <li><a class="dropdown-item" href="{%url 'salesList'%}">Registered Sales</a></li>
+                    </ul>
+                </li>
+
+                    <li class="nav-item dropdown" id="navbarDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Expenses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href"#"></a></li>
+                            <li><a class="dropdown-item" href="{% url 'expenses'%}">Expenses</a></li>
+                            <li><a class="dropdown-item" href="{% url 'expenses'%}">Add expense</a></li>
+                            <li>
+                              <hr class="dropdown-divider">
+                          </li>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'expenseList'%}">Registered expense</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ReportPage'%}">Report</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown" id="navbarDropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                          data-bs-toggle="dropdown" aria-expanded="false">
+                          Profile
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href"#"></a></li>
+                          <li><a class="dropdown-item" href="#">Account</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout'%}">Sign Out</a></li>
+                          <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                      </ul>
+                  </li>
+                </ul>
+                <form class="d-flex" id="form">
+                  {%csrf_token%}
+                    <input class="form-control me-2" type="search" name="day_category" placeholder="Search" aria-label="Search" id="search">
+                    <button class="btn btn-outline-success" id="search" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4"><div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+        <div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+               
+              <select class="link-me" id="click">
+                <option class="link-me">sort</option>
+                <option><a href="#" class="link-me" data-sort-by="alphabetically" data-oder="ascending">ascending</a></option>
+                <option><a href="#" class="link-me" data-sort-by="alphabetically" data-oder="descenging">descending</a></option>
+              </select>
+            </div>
+          </div>
+          </div>
+          
+            {%block content%}
+            {%endblock%}
+          
+      {%include 'footer.html'%}
+          </div>
+          <script>
+            function time() {
+            var clock = new Date();
+            var hour = clock.getHours();
+            var min = clock.getMinutes();
+            var second = clock.getSeconds();
+            var session = document.getElementById("");
+          
+            var sessionAM = "AM";
+            var sessionPM = "PM";
+          
+            var fullTime = hour + ":" + min + ":" + second;
+            if (hour < 12) {
+                fullTime = hour + ":" + min + ":" + second + " " + sessionAM;
+            } else {
+                fullTime = hour + ":" + min + ":" + second + " " + sessionPM;
+            }
+            document.getElementById("time").innerHTML = fullTime;
+          }
+          setInterval(time, 1000);
+        </script>
+ </main>
+</body>
+</html>
